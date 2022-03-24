@@ -8,9 +8,13 @@ export default function App(){
   return(
     <>
       <h1>React Whiteboard</h1>
-      <p>What is react whiteboard? Good question! I don't really know yet.</p>
-      
-      <Card title="Drag Me!" desc="Please :)"></Card>
+      <p>A React Component visualization tool for hybrid developer/designer teams.</p>
+
+      <h1><a href='' onClick={(e) => {
+        console.log('clicked');
+        e.preventDefault();
+      }}>Create new whiteboard</a></h1>
+
     </>
   );
 }
