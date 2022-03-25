@@ -9,19 +9,70 @@
     flex-direction: column;
     align-items: center;
 
+    min-width: 100px;
     padding: 15px;
     border-style: solid;
     border-radius: 6px;
     border-color: gray;
     border-width: 1px;
     gap: 15px;
-    cursor: grab;
+}
+
+.card-icons-container {
+    display: flex;
+    align-items: center;
 }
 
 .card-title {
-
+    overflow: hidden;
+    resize: none;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    border: none;
 }
 
 .card-desc {
+    display: block;
+    overflow: hidden;
+    resize: none;
+    padding: 10px;
+    text-align: center;
+    border: none;
+}
 
+.card-title:focus {
+    outline: none;
+}
+
+.card-desc:focus {
+    outline: none;
+}
+
+.icon {
+    cursor: pointer;
+    padding: 10px;
+    mask-repeat: no-repeat;
+    mask-size: cover;
+    background-color: gray;
+}
+
+.verticaldots {
+    mask-image: url('./assets/icons/three-dots-vertical.svg');
+    margin-left: 30px;
+    margin-right: -5px;
+}
+
+.move {
+    mask-image: url('./assets/icons/arrows-move.svg');
+    margin-right: 30px;
+}
+
+.gripvertical {
+    mask-image: url('./assets/icons/grip-vertical.svg');
+}
+
+.card-menu {
+    margin-left: 90px
 }

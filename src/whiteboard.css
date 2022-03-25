@@ -1,0 +1,51 @@
+.input-whiteboardname {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.whiteboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/**
+ * Column section
+ */
+
+.column-container {
+    margin: 8px;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+}
+
+.title {
+    padding: 8px;
+}
+
+.tasklist {
+    padding: 8px;
+}
+
+.task-container {
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    padding: 8px;
+    margin-bottom: 8px;
+    background-color: white;
+
+    display: flex;
+}
+
+.handle-container {
+    padding: 12px;
+    margin-left: -8px;
+    margin-right: 4px;
+}
