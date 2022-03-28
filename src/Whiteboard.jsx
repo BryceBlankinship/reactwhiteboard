@@ -23,12 +23,17 @@ const deleteEntity = (index) => {
     console.log(entities)
 }
 
+const refresh = () => {
+    
+}
+
 export default function WhiteboardView() {
 
     return (
         <div className="whiteboard-page-container">
             <input className='input-whiteboardname' placeholder='My Whiteboard'></input>
             <Button type='small' title='Save'></Button>
+            <Button type='small' title='Refresh' onClick={refresh}></Button>
             <br></br>
             <Whiteboard />
         </div>
