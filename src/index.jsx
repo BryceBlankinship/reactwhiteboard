@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+import axios from 'axios';
+
 import Card from './Cards.jsx';
 import Button from './Buttons.jsx';
 import WhiteboardView from './Whiteboard';
@@ -21,7 +23,14 @@ export default function HomeView() {
   }
 
   useEffect(() => {
-    const existingPositions = JSON.parse(localStorage.getItem('positions'));
+    // get the position from the database using HTTP requests
+    try{
+      
+    }catch(err){
+      // get from localStorage as a fallback
+      const existingPositions = JSON.parse(localStorage.getItem('positions'));
+
+    }
     setPositions(existingPositions);
     setHasLoaded(true);
   }, []);
@@ -34,6 +43,10 @@ export default function HomeView() {
     tempPositions[itemId]['y'] = data.y;
     setPositions(tempPositions);
     console.log(tempPositions);
+
+    axios.get('http://localhost:8000/api/positions/1').then(res => {
+      console.log(res);
+    }).catch(error => console.log(error))
   }
 
   useEffect(() => {
