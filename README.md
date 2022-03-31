@@ -1,5 +1,15 @@
 # Recent Decisions
 
+(3/31/22):
+It appears that zlib is a package that is messing with other packages, and is all included under webpack.
+To fix this, I'm going to have the backend code outside of the scope of React's package.json
+Which means creating a folder called React and placing all of the react files in that folder.
+And then creating a folder called Backend and placing all of the backend files in that folder.
+
+It is annoying but seems to be the best way to prevent any cross-compatibility problems, even though packages like zlib should never cause this issue in the first place.
+
+(3/30/22):
+
 Was working off of the redis branch to originally implement redis
 That was too hard as I don't understand how RedisJSON works, and normal redis is key value pairs
 And i need to store 3 values at least, so I decided to go with MongoDB.
