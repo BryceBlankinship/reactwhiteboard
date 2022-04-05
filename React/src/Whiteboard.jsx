@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import Button from './Buttons.jsx';
 import Card from './Cards.jsx';
 import './whiteboard.css';

@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 
 const positionSchema = new mongoose.Schema({
+    whiteboard_id: {
+        type: Number,
+        required: true,
+    },
     id: {
         type: Number,
         required: true,
