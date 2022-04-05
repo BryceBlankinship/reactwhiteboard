@@ -1,70 +1,22 @@
-# Getting Started with Create React App
+# Recent Decisions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+(3/31/22):
+It appears that zlib is a package that is messing with other packages, and is all included under webpack.
+To fix this, I'm going to have the backend code outside of the scope of React's package.json
+Which means creating a folder called React and placing all of the react files in that folder.
+And then creating a folder called Backend and placing all of the backend files in that folder.
 
-## Available Scripts
+It is annoying but seems to be the best way to prevent any cross-compatibility problems, even though packages like zlib should never cause this issue in the first place.
 
-In the project directory, you can run:
+(3/30/22):
 
-### `npm start`
+Was working off of the redis branch to originally implement redis
+That was too hard as I don't understand how RedisJSON works, and normal redis is key value pairs
+And i need to store 3 values at least, so I decided to go with MongoDB.
+I will test if caching positons is required to ensure satisfactory speed,
+however I think that implementing websockets first would be more beneficial,
+as i expect more latency to come from the http requests than the database actually getting the information
+I could be wrong, so when the time comes, Ill run some tests
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Until then, Im going to merge the redis branch to the master branch, and open a new branch for integrating the http methods nicely with the components,
+and hopefully get most of the frontend done. This is going to be very interesting.
