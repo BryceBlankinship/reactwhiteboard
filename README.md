@@ -1,5 +1,8 @@
 # Recent Decisions
 
+(4/5/22):
+Fixed all dependency errors by using yarn instead of npm, and rebuilt the dependency tree. This change was recommended by React which someone on the React team probably encountered this issue and added a debug log for it.
+
 (3/31/22):
 It appears that zlib is a package that is messing with other packages, and is all included under webpack.
 To fix this, I'm going to have the backend code outside of the scope of React's package.json
