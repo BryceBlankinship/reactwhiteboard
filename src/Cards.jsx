@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import './cards.css';
 
-import { useDrag } from 'react-dnd';
-
 export default function Card(props){
     const [showMenu, setShowMenu] = useState(false);
 
