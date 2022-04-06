@@ -1,5 +1,4 @@
 import express from 'express';
-import { RootNodesUnavailableError } from 'redis';
 const router = express.Router()
 export default router;
 
@@ -11,6 +10,14 @@ router.get('/', async (req, res) => {
         res.json(positions);
     }catch(err){
         res.status(500).json({ message: err.message });
+    }
+});
+
+router.post('/:whiteboard_id', async (req, res) => {
+    try{
+
+    }catch(err){
+
     }
 });
 

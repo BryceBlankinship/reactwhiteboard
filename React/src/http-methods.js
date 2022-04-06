@@ -10,6 +10,12 @@ export default function getWhiteboard(whiteboard_id){
       }).catch(error => console.log(error))
 }
 
+export function createWhiteboard(whiteboard_id){
+    axios.post(`http://localhost:8000/api/positions/${whiteboard_id}`).then(res => {
+        return res.data;
+    }).catch(error => console.log(error));
+}
+
 export function getPosition(whiteboard_id, id){
     axios.get(`http://localhost:8000/api/positions/${whiteboard_id}/${id}`).then(res => {
         return res.data;
@@ -23,7 +29,7 @@ export function createPosition(whiteboard_id, id, x, y){
 }
 
 export function updatePosition(whiteboard_id, id, x, y){
-    axios.patch(`http://localhost:8000/api/positions/${whiteboard_id}/${id}`, { positionX: 50, positionY: 600}).then(res => {
+    axios.patch(`http://localhost:8000/api/positions/${whiteboard_id}/${id}`, { positionX: x, positionY: y}).then(res => {
         return res.data;
     }).catch(error => console.log(error));
 }

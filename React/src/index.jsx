@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 
+ 
+
 import Button from './Buttons.jsx';
 import WhiteboardView from './Whiteboard';
 
@@ -9,7 +11,9 @@ export default function HomeView() {
   const [whiteboardActive, setWhiteboardActive] = useState(false);
 
   const createWhiteboard = () => {
+    
     setWhiteboardActive(true);
+
   }
 
   const removeWhiteboard = () => {
