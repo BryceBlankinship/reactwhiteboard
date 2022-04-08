@@ -13,14 +13,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/:whiteboard_id', async (req, res) => {
-    try{
-
-    }catch(err){
-
-    }
-});
-
 //Get all positions within a Whiteboard
 router.get('/:whiteboard_id', async (req, res) => {
     try{

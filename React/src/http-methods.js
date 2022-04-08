@@ -7,13 +7,7 @@ import axios from 'axios';
 export default function getWhiteboard(whiteboard_id){
     axios.get(`http://localhost:8000/api/positions/${whiteboard_id}`).then(res => {
         return res.data;
-      }).catch(error => console.log(error))
-}
-
-export function createWhiteboard(whiteboard_id){
-    axios.post(`http://localhost:8000/api/positions/${whiteboard_id}`).then(res => {
-        return res.data;
-    }).catch(error => console.log(error));
+      }).catch(error => console.log(error));
 }
 
 export function getPosition(whiteboard_id, id){

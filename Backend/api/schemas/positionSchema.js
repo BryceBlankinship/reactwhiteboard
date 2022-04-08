@@ -13,18 +13,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     }
-});
-
-const whiteboardSchema = new mongoose.Schema({
-    whiteboard_id: {
-        type: Number,
-        required: true,
-    },
-    user: {
-        type: userSchema,
-        required: true,
-    }
-}, {collection: 'positionsCollection'});
+}, {collection: 'usersCollection'});
 
 const positionSchema = new mongoose.Schema({
     whiteboard_id: {
@@ -46,4 +35,4 @@ const positionSchema = new mongoose.Schema({
 }, {collection: 'positionsCollection'});
 
 export default mongoose.model('Position', positionSchema);
-export const whiteboardModel = mongoose.model('Whiteboard', whiteboardSchema);
+export const whiteboardModel = mongoose.model('User', userSchema);
