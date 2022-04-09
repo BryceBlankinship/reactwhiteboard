@@ -5,12 +5,7 @@ export default router;
 import Position from '../schemas/positionSchema.js';
 
 router.get('/', async (req, res) => {
-    try{
-        const positions = await Position.find();
-        res.json(positions);
-    }catch(err){
-        res.status(500).json({ message: err.message });
-    }
+    res.json({ message: "Welcome to the ReactWhiteboard positions API. Refer to the documentation here: https://www.reactwhiteboard.com/api/" });
 });
 
 //Get all positions within a Whiteboard
@@ -34,6 +29,7 @@ router.post('/:whiteboard_id/:id', async (req, res) => {
         }else{
             const position = new Position({
                 whiteboard_id: req.params.whiteboard_id,
+                whiteboard_name: req.body.whiteboard_name,
                 id: req.params.id,
                 positionX: req.body.positionX,
                 positionY: req.body.positionY,
@@ -63,21 +59,45 @@ router.patch('/:whiteboard_id/:id', getPosition, async (req, res) => {
     }
 });
 
-router.delete('/:id', getPosition, async (req, res) => {
+router.delete('/:whiteboard_id/:id', getPosition, async (req, res) => {
     try {
         await res.position.remove(req.params.id);
-        res.json({ message: 'Deleted position set.'});
+        res.json({ message: 'Deleted position ' + req.params.id + ' from whiteboard ' + req.params.whiteboard_id});
     } catch(err) {
         res.status(500).json({ message: err.message });
     }
 });
+
+router.delete('/:whiteboard_id', getWhiteboard, async (req, res) => {
+    try{
+        await res.whiteboard.remove(req.params.whiteboard_id);
+        res.json({ message: 'Deleted whiteboard ' + req.params.whiteboard_id });
+    }catch(err){
+        res.status(500).json({ message: err.message });
+    }
+});
+
+async function getWhiteboard(req, res, next) {
+    let whiteboard;
+    try{
+        whiteboard = await Position.find({ whiteboard_id: req.params.whiteboard_id });
+        if(whiteboard === null){
+            return res.status(404).json({ message: 'Whiteboard did not exist in database.' });
+        }
+    }catch(err){
+        return res.status(500).json({ message: err.message });
+    }
+
+    res.whiteboard = whiteboard;
+    next();
+}
 
 async function getPosition(req, res, next) {
     let position;
     try{
         position = await Position.findOne({ whiteboard_id: req.params.whiteboard_id, id: req.params.id })
         if(position === null){
-            return res.status(404).json({ message: 'Position did not exist in database.'});
+            return res.status(404).json({ message: 'Position did not exist in database.' });
         }
     }catch(err){
         return res.status(500).json({ message: err.message });
