@@ -2,32 +2,32 @@ import express from 'express';
 const router = express.Router()
 export default router;
 
-import Position from '../schemas/positionSchema.js';
+import Card from '../schemas/cardSchema.js';
 
 router.get('/', async (req, res) => {
-    res.json({ message: "Welcome to the ReactWhiteboard positions API. Refer to the documentation here: https://www.reactwhiteboard.com/api/" });
+    res.json({ message: "Welcome to the ReactWhiteboard Cards API. Refer to the documentation here: https://www.reactwhiteboard.com/api/" });
 });
 
-//Get all positions within a Whiteboard
+//Get all cards within a Whiteboard
 router.get('/:whiteboard_id', async (req, res) => {
     try{
-        const whiteboard = await Position.find({ whiteboard_id: req.params.whiteboard_id });
+        const whiteboard = await Card.find({ whiteboard_id: req.params.whiteboard_id });
         res.json(whiteboard);
     }catch(err){
         res.status(500).json({ message: err.message });
     }
 });
 
-router.get('/:whiteboard_id/:id', getPosition, (req, res) => {
-    res.status(200).json(res.position);
+router.get('/:whiteboard_id/:id', getCard, (req, res) => {
+    res.status(200).json(res.card);
 });
 
 router.post('/:whiteboard_id/:id', async (req, res) => {
-    Position.find({ id: req.params.id }, async (err, results) => {
+    Card.find({ id: req.params.id }, async (err, results) => {
         if(results.length){
-            res.status(400).json({ message: 'Cannot POST a new position when one is already at id ' + req.params.id });
+            res.status(400).json({ message: 'Cannot POST a new card when one is already at id ' + req.params.id });
         }else{
-            const position = new Position({
+            const card = new Card({
                 whiteboard_id: req.params.whiteboard_id,
                 whiteboard_name: req.body.whiteboard_name,
                 id: req.params.id,
@@ -35,8 +35,8 @@ router.post('/:whiteboard_id/:id', async (req, res) => {
                 positionY: req.body.positionY,
             });
             try {
-                const newPosition = await position.save();
-                res.status(201).json(newPosition);
+                const newCard = await card.save();
+                res.status(201).json(newCard);
             }catch(err){
                 res.status(400).json({ message: err.message });
             }
@@ -44,25 +44,25 @@ router.post('/:whiteboard_id/:id', async (req, res) => {
     });
 });
 
-router.patch('/:whiteboard_id/:id', getPosition, async (req, res) => {
+router.patch('/:whiteboard_id/:id', getCard, async (req, res) => {
     if(req.body.positionX !== null){
-        res.position.positionX = req.body.positionX;
+        res.card.positionX = req.body.positionX;
     }
     if(req.body.positionY !== null){
-        res.position.positionY = req.body.positionY;
+        res.card.positionY = req.body.positionY;
     }
     try {
-        const updatedPosition = await res.position.save();
-        res.json(updatedPosition);
+        const updatedCard = await res.card.save();
+        res.json(updatedCard);
     } catch (err){
         res.status(400).json({ message: err.message });
     }
 });
 
-router.delete('/:whiteboard_id/:id', getPosition, async (req, res) => {
+router.delete('/:whiteboard_id/:id', getCard, async (req, res) => {
     try {
-        await res.position.remove(req.params.id);
-        res.json({ message: 'Deleted position ' + req.params.id + ' from whiteboard ' + req.params.whiteboard_id});
+        await res.card.remove(req.params.id);
+        res.json({ message: 'Deleted card ' + req.params.id + ' from whiteboard ' + req.params.whiteboard_id});
     } catch(err) {
         res.status(500).json({ message: err.message });
     }
@@ -80,7 +80,7 @@ router.delete('/:whiteboard_id', getWhiteboard, async (req, res) => {
 async function getWhiteboard(req, res, next) {
     let whiteboard;
     try{
-        whiteboard = await Position.find({ whiteboard_id: req.params.whiteboard_id });
+        whiteboard = await Card.find({ whiteboard_id: req.params.whiteboard_id });
         if(whiteboard === null){
             return res.status(404).json({ message: 'Whiteboard did not exist in database.' });
         }
@@ -92,17 +92,17 @@ async function getWhiteboard(req, res, next) {
     next();
 }
 
-async function getPosition(req, res, next) {
-    let position;
+async function getCard(req, res, next) {
+    let card;
     try{
-        position = await Position.findOne({ whiteboard_id: req.params.whiteboard_id, id: req.params.id })
-        if(position === null){
-            return res.status(404).json({ message: 'Position did not exist in database.' });
+        card = await Card.findOne({ whiteboard_id: req.params.whiteboard_id, id: req.params.id })
+        if(card === null){
+            return res.status(404).json({ message: 'Card did not exist in database.' });
         }
     }catch(err){
         return res.status(500).json({ message: err.message });
     }
 
-    res.position = position;
+    res.card = card;
     next();
 }

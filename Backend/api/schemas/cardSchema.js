@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const positionSchema = new mongoose.Schema({
+const cardSchema = new mongoose.Schema({
     whiteboard_id: {
         type: Number,
         required: true,
@@ -16,7 +16,15 @@ const positionSchema = new mongoose.Schema({
     positionY: {
         type: Number,
         required: true,
+    },
+    title: {
+        type: String,
+        required: false,
+    },
+    desc: {
+        type: String,
+        required: false
     }
 }, {collection: 'positionsCollection'});
 
-export default mongoose.model('Position', positionSchema);
+export default mongoose.model('Card', cardSchema);

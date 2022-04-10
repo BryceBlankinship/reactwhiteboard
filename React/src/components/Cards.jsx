@@ -35,7 +35,8 @@ export default class Card extends Component {
     handleTrash = () => {
         this.setState({positions: []});
         deletePosition(1, this.props.id);
-
+        this.setState({hasLoaded: false});
+        console.log("Deleted Card with ID: " + this.props.id)
     }
 
     toggleMenu = () => {
@@ -53,16 +54,30 @@ export default class Card extends Component {
     }
 
     getOptions = () => {
-        
+
     }
 
     async componentDidMount(){
         console.log("Mounted Card with ID: " + this.props.id)
         this.defaultPosition();
 
+        /** 
+
+        Couldnt figure out how to push to the state array when we want a new card created :(
+        So going to just createPosition in database over in Whiteboard.jsx instead and then force re-sync of database
+        Not really the declarative way of doing things but will actually result in better performance since there will be no unnecessary HTTP request (which is what the code below produces sometimes)
+
         // Checking if position exists and then creating a position will always result in at least 1 query, with 2 queries possible
         // So just doing a POST request to the positions API and then bouncing on a 400 error is actually a better approach for saving connections when this gets deployed
-        createPosition(1, this.props.id, 50, 50);
+        try{
+            // default position for new cards with be 50x, 50y
+            await createPosition(1, this.props.id, 50, 50);
+        }catch(err){
+            console.log(err);
+            return;
+        }
+
+        */
     }
 
     render(){
@@ -83,7 +98,7 @@ export default class Card extends Component {
                             <button className='icon trash' onClick={this.handleTrash}></button>
                             <button className='icon move'></button>
                             <button className='icon verticaldots' onClick={this.toggleMenu}></button>
-                            {this.state.showMenu ? <CardMenu/> : null}
+                            <CardMenu showMenu={this.state.showMenu}/>
                         </div>
                         <textarea className='card-title' defaultValue={this.props.title}></textarea>
                         <span className='card-desc' contentEditable={true}>{this.props.desc}</span>
@@ -96,7 +111,7 @@ export default class Card extends Component {
 }
 
 export function CardMenu(props){
-    return(
+    return props.showMenu ? (
         <div className="card-menu">
             <form>
                 <input type="checkbox"/> Show Description<br/>
@@ -107,5 +122,5 @@ export function CardMenu(props){
                 }}/>
             </form>
         </div>
-    );
+    ) : null;
 }
