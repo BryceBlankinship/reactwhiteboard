@@ -1,68 +1,8 @@
-import React, { Component } from 'react';
-import Button from './Buttons.jsx';
-import Card from './Cards.jsx';
-import './whiteboard.css';
+
+/**
+ 
 import { initialData } from './initial-data.js';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
-
-let entities = []
-const createEntity = (title, desc) => {
-    entities.push({ title, desc });
-    console.log(entities);
-}
-
-const updateEntity = (index, title, desc) => {
-    entities[index] = {title, desc};
-    console.log(entities)
-}
-
-const deleteEntity = (index) => {
-    // this makes that index undefined, but does not affect the array's length
-    delete entities[index];
-    console.log(entities)
-}
-
-const refresh = () => {
-    
-}
-
-export default function WhiteboardView() {
-
-    return (
-        <div className="whiteboard-page-container">
-            <input className='input-whiteboardname' placeholder='My Whiteboard'></input>
-            <Button type='small' title='Save'></Button>
-            <Button type='small' title='Refresh' onClick={refresh}></Button>
-            <br></br>
-            <Whiteboard />
-        </div>
-    );
-}
-
-export function Whiteboard() {
-    return (
-        <div className="whiteboard-container">
-            <p>Welcome to your Whiteboard!</p>
-            <p>Begin by creating a component below or clicking <Button type='text' title='here' fontSize='15px' onClick={() => {
-                createEntity('title', 'desc')
-            }}></Button></p>
-
-            <p>Update here <Button type='text' title='here' fontSize='15px' onClick={() => {
-                updateEntity(2, 'newTitle', 'newDesc')
-            }}></Button></p>
-
-            <p>Delete here <Button type='text' title='here' fontSize='15px' onClick={() => {
-                deleteEntity(2)
-            }}></Button></p>
-
-            <Card title='test' desc='desc'/>
-
-            <App/>
-        </div>
-    );
-}
-
 
 const result = {
     draggableId: 'task-1',
@@ -171,3 +111,4 @@ class Task extends Component {
 }
 
 
+*/

@@ -10,10 +10,17 @@ export default function getWhiteboard(whiteboard_id){
       }).catch(error => console.log(error));
 }
 
-export function getPosition(whiteboard_id, id){
-    axios.get(`http://localhost:8000/api/positions/${whiteboard_id}/${id}`).then(res => {
-        return res.data;
-    }).catch(error => console.log(error));
+export async function getPosition(whiteboard_id, id){
+    try{
+        const res = await axios.get(`http://localhost:8000/api/positions/${whiteboard_id}/${id}`);
+        let positions = {
+            x: res.data.positionX, 
+            y: res.data.positionY
+        }
+        return positions;
+    }catch(err){
+        console.log(err)
+    }
 }
 
 export function createPosition(whiteboard_id, id, x, y){
@@ -22,8 +29,20 @@ export function createPosition(whiteboard_id, id, x, y){
     }).catch(error => console.log(error));
 }
 
-export function updatePosition(whiteboard_id, id, x, y){
-    axios.patch(`http://localhost:8000/api/positions/${whiteboard_id}/${id}`, { positionX: x, positionY: y}).then(res => {
+export async function updatePosition(whiteboard_id, id, x, y){
+    try{
+        const res = await axios.patch(`http://localhost:8000/api/positions/${whiteboard_id}/${id}`, { positionX: x, positionY: y });
         return res.data;
-    }).catch(error => console.log(error));
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export async function deletePosition(whiteboard_id, id){
+    try{
+        const res = await axios.delete(`http://localhost:8000/api/positions/${whiteboard_id}/${id}`);
+        return res.data;
+    }catch(err){
+        console.log(err);
+    }
 }

@@ -3,8 +3,8 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import { BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 
-import Button from './Buttons.jsx';
-import WhiteboardView from './Whiteboard';
+import Button from './components/Buttons.jsx';
+import WhiteboardView from './components/Whiteboard.jsx';
 import DocumentationPage from './docs';
 
 export default function App() {
@@ -23,7 +23,7 @@ export default function App() {
   if (whiteboardActive) {
     return (
       <>
-        <Button type='text' title="Go back" onClick={removeWhiteboard} />
+        <Button type='small' title="Go back" onClick={removeWhiteboard} />
         <WhiteboardView />
       </>
     );
@@ -61,11 +61,11 @@ function Greeting(){
   let h = date.getHours();
   
   if(h > 0 && h <= 12){
-    greetingText = 'Good morning'
+    greetingText = 'Good morning';
   }else if(h > 12 && h <= 18){
-    greetingText = 'Good afternoon'
+    greetingText = 'Good afternoon';
   }else if(h > 18 && h <= 24){
-    greetingText = 'Good evening'
+    greetingText = 'Good evening';
   }
 
   return(
@@ -77,13 +77,11 @@ function Greeting(){
 
 const root = createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App/>}/>
         <Route path="/api" element={<DocumentationPage/>}/>
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>
 );
 
