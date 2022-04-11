@@ -56,9 +56,27 @@ export async function deletePosition(whiteboard_id, id){
 
 /** Titles & Descriptions */
 
+export async function getTitle(whiteboard_id, id){
+    try{
+        const res = await axios.get(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`);
+        return res.data.title;
+    }catch(err){
+        console.log(err);
+    }
+}
+
 export async function createTitle(whiteboard_id, id, title){
     try{
         const res = await axios.post(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`, { title: title });
+        return res.data.desc;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export async function updateTitle(whiteboard_id, id, title){
+    try{
+        const res = await axios.patch(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`, { title: title });
         return res.data;
     }catch(err){
         console.log(err);
@@ -74,10 +92,10 @@ export async function createDesc(whiteboard_id, id, desc){
     }
 }
 
-export async function updateTitle(whiteboard_id, id, title){
+export async function getDesc(whiteboard_id, id){
     try{
-        const res = await axios.patch(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`, { title: title });
-        return res.data;
+        const res = await axios.get(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`);
+        return res.data.desc;
     }catch(err){
         console.log(err);
     }

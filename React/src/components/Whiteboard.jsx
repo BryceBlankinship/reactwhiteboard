@@ -5,6 +5,16 @@ import Button from './Buttons.jsx';
 import Card from './Cards.jsx';
 import './whiteboard.css';
 
+export class WhiteboardOverview extends Component {
+    render(){
+        return(
+            <>
+                <h1>Your Whiteboards</h1>
+            </>
+        );
+    }
+}
+
 // simply storing card ids in an array
 let cards = getWhiteboard(1);
 
@@ -34,13 +44,20 @@ export class Whiteboard extends Component {
 
     async createCard(){
         // Add a card to the array of cards, it will automatically get created in database via Cards.jsx
-        try{
-            // default position for new cards with be 50x, 50y
-            await createPosition(1, this.state.cards.length+1, 50, 50);
-        }catch(err){
-            console.log(err);
-            return;
+        if(this.state.cards.id === undefined){
+            try{
+                await createPosition(1, 1, 50, 50);
+            }catch(err){
+                console.log(err);
+            }
+        }else{
+            try{
+                await createPosition(1, this.state.cards.at(-1).id + 1, 50, 50);
+            }catch(err){
+                console.log(err);
+            }
         }
+
         
         this.setState({ cards: await getWhiteboard(1) }, () => {
             console.log(this.state.cards)
@@ -62,7 +79,7 @@ export class Whiteboard extends Component {
                 
                 {
                     this.state.cards.map((card) => (
-                        <Card id={card.id}/>
+                        <Card key={'CARD-' + card.id} id={card.id}/>
                     ))
                 }
 

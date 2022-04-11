@@ -46,7 +46,7 @@ function HomeView(props){
     return(
       <>
         <h1>React Whiteboard</h1>
-        <p>A React Component visualization tool for hybrid developer/designer teams.</p>
+        <p>A React Component Whiteboarding Tool for Developer/Designer Teams.</p>
         <Link to="/api">api</Link>
 
         <Button type='text' title='Create a new whiteboard' fontSize='24px' onClick={props.onClick} />

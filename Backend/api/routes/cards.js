@@ -33,6 +33,8 @@ router.post('/:whiteboard_id/:id', async (req, res) => {
                 id: req.params.id,
                 positionX: req.body.positionX,
                 positionY: req.body.positionY,
+                title: req.body.title,
+                desc: req.body.desc
             });
             try {
                 const newCard = await card.save();
@@ -50,6 +52,12 @@ router.patch('/:whiteboard_id/:id', getCard, async (req, res) => {
     }
     if(req.body.positionY !== null){
         res.card.positionY = req.body.positionY;
+    }
+    if(res.card.title !== null){
+        res.card.title = req.body.title;
+    }
+    if(res.card.desc !== null){
+        res.card.desc = req.body.desc;
     }
     try {
         const updatedCard = await res.card.save();

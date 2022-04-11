@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import './cards.css';
-import { createPosition, getPosition, updatePosition, deletePosition } from '../http-methods';
+import { getPosition, updatePosition, deletePosition, getTitle, getDesc, updateTitle, updateDesc } from '../http-methods';
 
 export default class Card extends Component {
     constructor(props){
@@ -9,7 +9,9 @@ export default class Card extends Component {
         this.state = {
             showMenu: false,
             positions: [],
-            hasLoaded: false
+            hasLoaded: false,
+            title: '',
+            desc: ''
         }
     }
 
@@ -43,14 +45,20 @@ export default class Card extends Component {
         this.setState({showMenu: !this.state.showMenu});
     }
 
-
-    // need to store this in database as well
-    getTitle = () => {
-
+    handleTitle = (e) => {
+        updateTitle(1, this.props.id, e.target.value);
     }
 
-    getDesc = () => {
+    handleDesc = (e) => {
+        updateDesc(1, this.props.id, e.currentTarget.innerText);
+    }
 
+    getTitle = async () => {
+        this.setState({ title: await getTitle(1, this.props.id) });
+    }
+
+    getDesc = async () => {
+        this.setState({ desc: await getDesc(1, this.props.id) });
     }
 
     getOptions = () => {
@@ -60,6 +68,8 @@ export default class Card extends Component {
     async componentDidMount(){
         console.log("Mounted Card with ID: " + this.props.id)
         this.defaultPosition();
+        this.getTitle();
+        this.getDesc();
 
         /** 
 
@@ -91,7 +101,7 @@ export default class Card extends Component {
              * 
              * Current workaround (which is actually working pretty well) is to use hasLoaded state boolean and not render anything until true
              */
-            <Draggable handle='.move' defaultPosition={{x: this.state.positions[0], y: this.state.positions[1]}} onStop={this.handleStop}>
+            <Draggable bounds={{top: 0}} handle='.move' defaultPosition={{x: this.state.positions[0], y: this.state.positions[1]}} onStop={this.handleStop}>
                 <div className="center-container">
                     <div className="card-container">
                         <div className="card-icon-container">
@@ -100,8 +110,8 @@ export default class Card extends Component {
                             <button className='icon verticaldots' onClick={this.toggleMenu}></button>
                             <CardMenu showMenu={this.state.showMenu}/>
                         </div>
-                        <textarea className='card-title' defaultValue={this.props.title}></textarea>
-                        <span className='card-desc' contentEditable={true}>{this.props.desc}</span>
+                        <textarea className='card-title' defaultValue={this.state.title} onChange={this.handleTitle}></textarea>
+                        <span className='card-desc' contentEditable={true} onInput={this.handleDesc}>{this.state.desc}</span>
                     </div>
                 </div>
             </Draggable>

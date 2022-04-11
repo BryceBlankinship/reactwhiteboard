@@ -11,19 +11,21 @@ const cardSchema = new mongoose.Schema({
     },
     positionX: {
         type: Number,
-        required: true,
+        required: false,
     },
     positionY: {
         type: Number,
-        required: true,
+        required: false,
     },
     title: {
         type: String,
         required: false,
+        default: ''
     },
     desc: {
         type: String,
-        required: false
+        required: false,
+        default: ''
     }
 }, {collection: 'positionsCollection'});
 

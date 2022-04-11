@@ -1,8 +1,10 @@
+
 .center-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 
 .card-container {
     display: flex;
