@@ -44,7 +44,7 @@ export class Whiteboard extends Component {
 
     async createCard(){
         // Add a card to the array of cards, it will automatically get created in database via Cards.jsx
-        if(this.state.cards.id === undefined){
+        if(this.state.cards === undefined){
             try{
                 await createPosition(1, 1, 50, 50);
             }catch(err){
