@@ -54,10 +54,12 @@ export default class Card extends Component {
     }
 
     getTitle = async () => {
+        console.log(await getTitle(1, this.props.id));
         this.setState({ title: await getTitle(1, this.props.id) });
     }
 
     getDesc = async () => {
+        console.log(await getDesc(1, this.props.id));
         this.setState({ desc: await getDesc(1, this.props.id) });
     }
 

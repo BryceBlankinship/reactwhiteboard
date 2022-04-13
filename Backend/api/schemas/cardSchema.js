@@ -20,12 +20,10 @@ const cardSchema = new mongoose.Schema({
     title: {
         type: String,
         required: false,
-        default: ''
     },
     desc: {
         type: String,
         required: false,
-        default: ''
     }
 }, {collection: 'positionsCollection'});
 
