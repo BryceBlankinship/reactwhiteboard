@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import './auth.css';
 
@@ -50,18 +50,69 @@ export default class Auth extends Component {
     }
 }
 
-export function Signup(){
+export function GoogleLogin(){
+    const success = () => {
+
+    }
+
+    const failure = () => {
+
+    }
+
     return(
-        <>
-            welcome
-        </>
+        <GoogleLogin
+            clientId=""
+            buttonText="Login"
+            onSuccess={success}
+            onFailure={failure}
+        />
     );
 }
 
+export function Signup(){
+    const [signUp, setSignUp] = useState(true);
+    
+    const createAccount = () => {
+
+    }
+
+    const goBack = () => {
+        setSignUp(false);
+    }
+
+    return signUp ? (
+        <div className="auth-outer-container">
+            <div className="auth-container">
+                <h1>Sign up</h1>
+                <input placeholder='Email'></input>
+                <input placeholder='Password'></input>
+                <Button type='small' title='Sign up' fontSize='14px' onClick={createAccount}/>
+                <Button type='text' title='Not trying to create an account? Go back.' fontSize='14px' onClick={goBack}/>
+            </div>
+        </div>
+    ) : <Navigate to="/"/>;
+}
+
 export function Signin(){
-    return(
-        <>
-            hey there
-        </>
-    );
+    const [signIn, setSignIn] = useState(true);
+
+    const authenticateUser = () => {
+
+    }
+
+    const goBack = () => {
+        setSignIn(false);
+    }
+
+    return signIn ? (
+        <div className="auth-outer-container">
+            <div className="auth-container">
+                <h1>Sign in</h1>
+                <input placeholder='Email'></input>
+                <input placeholder='Password'></input>
+                <Button type='small' title='Sign in' fontSize='14px' onClick={authenticateUser}/>
+                <Button type='text' title='Not trying to sign in? Go back.' fontSize='14px' onClick={goBack}/>
+            </div>
+        </div>
+    ) : <Navigate to="/"/>;
 }

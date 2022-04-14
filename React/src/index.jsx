@@ -10,6 +10,7 @@ import Auth from './components/Auth.jsx';
 
 import { Signup, Signin } from './components/Auth';
 import GuestView from './components/Guest';
+import Whiteboard from './components/Whiteboard.jsx';
 
 export default function App() {
   const [whiteboardActive, setWhiteboardActive] = useState(false);
@@ -28,7 +29,7 @@ export default function App() {
     return (
       <>
         <Button type='small' title="Go back" onClick={removeWhiteboard} />
-        <WhiteboardView />
+        <Whiteboard />
       </>
     );
   } else {
@@ -87,7 +88,7 @@ root.render(
         <Route path="/" element={<App/>}/>
         <Route path="/api" element={<DocumentationPage/>}/>
         <Route path="/signup" element={<Signup/>}/>
-        <Route path="/sigin" element={<Signin/>}/>
+        <Route path="/signin" element={<Signin/>}/>
         <Route path="/guest" element={<GuestView/>}/>
       </Routes>
     </BrowserRouter>

@@ -4,18 +4,7 @@ import Button from './Buttons.jsx';
 import Card from './Cards.jsx';
 import './whiteboard.css';
 
-export default class WhiteboardView extends Component {
-    render(){
-        return (
-            <div className="whiteboard-page-container">
-                <input className='input-whiteboardname' placeholder='My Whiteboard'></input>
-                <Whiteboard />
-            </div>
-        );
-    }
-}
-
-export class Whiteboard extends Component {
+export default class Whiteboard extends Component {
     constructor(props){
         super(props);
         

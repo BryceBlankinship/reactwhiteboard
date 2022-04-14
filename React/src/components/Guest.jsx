@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from './Buttons';
-import { Whiteboard } from './Whiteboard';
+import Whiteboard from './Whiteboard';
 
 /**
  * 
