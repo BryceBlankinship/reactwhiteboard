@@ -80,6 +80,10 @@
     mask-image: url('../assets/icons/trash-outline.svg');
 }
 
+.add-circle {
+    mask-image: url('../assets/icons/add-circle-outline.svg');
+}
+
 .card-menu {
     margin-left: 90px
 }

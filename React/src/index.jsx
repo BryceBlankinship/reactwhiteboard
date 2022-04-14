@@ -6,6 +6,10 @@ import { BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 import Button from './components/Buttons.jsx';
 import WhiteboardView from './components/Whiteboard.jsx';
 import DocumentationPage from './docs';
+import Auth from './components/Auth.jsx';
+
+import { Signup, Signin } from './components/Auth';
+import GuestView from './components/Guest';
 
 export default function App() {
   const [whiteboardActive, setWhiteboardActive] = useState(false);
@@ -45,11 +49,12 @@ function HomeView(props){
   }else{
     return(
       <>
-        <h1>React Whiteboard</h1>
-        <p>A React Component Whiteboarding Tool for Developer/Designer Teams.</p>
-        <Link to="/api">api</Link>
+        <div className="header">
+          <h1>React Whiteboard</h1>
+          <p>A React Component Whiteboarding Tool<br></br>for Developer &#38; Designer Teams.</p>
+        </div>
 
-        <Button type='text' title='Create a new whiteboard' fontSize='24px' onClick={props.onClick} />
+        <Auth greeting={<Greeting/>}/>
       </>
     );
   }
@@ -81,6 +86,9 @@ root.render(
       <Routes>
         <Route path="/" element={<App/>}/>
         <Route path="/api" element={<DocumentationPage/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/sigin" element={<Signin/>}/>
+        <Route path="/guest" element={<GuestView/>}/>
       </Routes>
     </BrowserRouter>
 );

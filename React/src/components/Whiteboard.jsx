@@ -1,22 +1,8 @@
 import React, { Component } from 'react';
-import { renderMatches } from 'react-router-dom';
 import getWhiteboard, { createPosition } from '../http-methods.js';
 import Button from './Buttons.jsx';
 import Card from './Cards.jsx';
 import './whiteboard.css';
-
-export class WhiteboardOverview extends Component {
-    render(){
-        return(
-            <>
-                <h1>Your Whiteboards</h1>
-            </>
-        );
-    }
-}
-
-// simply storing card ids in an array
-let cards = getWhiteboard(1);
 
 export default class WhiteboardView extends Component {
     render(){
@@ -43,29 +29,30 @@ export class Whiteboard extends Component {
 
 
     async createCard(){
-        // Add a card to the array of cards, it will automatically get created in database via Cards.jsx
-        if(this.state.cards === undefined){
+        // Check if the array length is 0, if not send POST request with last item in cards[].id
+        if(this.state.cards.length === 0){
             try{
-                await createPosition(1, 1, 50, 50);
+                await createPosition(this.props.whiteboard_id, 1, 50, 50);
             }catch(err){
                 console.log(err);
             }
         }else{
             try{
-                await createPosition(1, this.state.cards.at(-1).id + 1, 50, 50);
+                await createPosition(this.props.whiteboard_id, this.state.cards[this.state.cards.length - 1].id + 1, 50, 50);
             }catch(err){
                 console.log(err);
             }
         }
 
         
-        this.setState({ cards: await getWhiteboard(1) }, () => {
+        this.setState({ cards: await getWhiteboard(this.props.whiteboard_id) }, () => {
             console.log(this.state.cards)
         });
     }
 
     async componentDidMount(){
-        this.setState({ cards : await getWhiteboard(1) }, () => {
+        
+        this.setState({ cards : await getWhiteboard(this.props.whiteboard_id) }, () => {
             console.log(this.state.cards);
             this.setState({hasLoaded: true})
         });
@@ -79,7 +66,7 @@ export class Whiteboard extends Component {
                 
                 {
                     this.state.cards.map((card) => (
-                        <Card key={'CARD-' + card.id} id={card.id}/>
+                        <Card key={'CARD-' + card.id} whiteboard_id={this.props.whiteboard_id} id={card.id}/>
                     ))
                 }
 

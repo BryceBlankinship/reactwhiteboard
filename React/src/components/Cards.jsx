@@ -20,7 +20,7 @@ export default class Card extends Component {
      */
 
     defaultPosition = async () => {
-        let positions = await getPosition(1, this.props.id);
+        let positions = await getPosition(this.props.whiteboard_id, this.props.id);
         this.setState({positions: [positions.x, positions.y]}, () => {
             this.setState({hasLoaded: true});
         })
@@ -30,13 +30,13 @@ export default class Card extends Component {
         this.setState({positions: [dragElement.x, dragElement.y]}, () => {
             console.log(this.state.positions[0], this.state.positions[1]);
             // create http post request for positionDB
-            updatePosition(1, this.props.id, this.state.positions[0], this.state.positions[1]);
+            updatePosition(this.props.whiteboard_id, this.props.id, this.state.positions[0], this.state.positions[1]);
         });
     }
 
     handleTrash = () => {
         this.setState({positions: []});
-        deletePosition(1, this.props.id);
+        deletePosition(this.props.whiteboard_id, this.props.id);
         this.setState({hasLoaded: false});
         console.log("Deleted Card with ID: " + this.props.id)
     }
@@ -46,25 +46,27 @@ export default class Card extends Component {
     }
 
     handleTitle = (e) => {
-        updateTitle(1, this.props.id, e.target.value);
+        updateTitle(this.props.whiteboard_id, this.props.id, e.target.value);
     }
 
     handleDesc = (e) => {
-        updateDesc(1, this.props.id, e.currentTarget.innerText);
+        updateDesc(this.props.whiteboard_id, this.props.id, e.currentTarget.innerText);
     }
 
     getTitle = async () => {
-        console.log(await getTitle(1, this.props.id));
-        this.setState({ title: await getTitle(1, this.props.id) });
+        this.setState({ title: await getTitle(this.props.whiteboard_id, this.props.id) });
     }
 
     getDesc = async () => {
-        console.log(await getDesc(1, this.props.id));
-        this.setState({ desc: await getDesc(1, this.props.id) });
+        this.setState({ desc: await getDesc(this.props.whiteboard_id, this.props.id) });
     }
 
     getOptions = () => {
 
+    }
+
+    createChild = () => {
+        console.log("Creating a child for Card ID: " + this.props.id)
     }
 
     async componentDidMount(){
@@ -83,7 +85,7 @@ export default class Card extends Component {
         // So just doing a POST request to the positions API and then bouncing on a 400 error is actually a better approach for saving connections when this gets deployed
         try{
             // default position for new cards with be 50x, 50y
-            await createPosition(1, this.props.id, 50, 50);
+            await createPosition(this.props.whiteboard_id, this.props.id, 50, 50);
         }catch(err){
             console.log(err);
             return;
@@ -107,8 +109,9 @@ export default class Card extends Component {
                 <div className="center-container">
                     <div className="card-container">
                         <div className="card-icon-container">
-                            <button className='icon trash' onClick={this.handleTrash}></button>
+                            <button className='icon add-circle' onClick={this.createChild}></button>
                             <button className='icon move'></button>
+                            <button className='icon trash' onClick={this.handleTrash}></button>
                             <button className='icon verticaldots' onClick={this.toggleMenu}></button>
                             <CardMenu showMenu={this.state.showMenu}/>
                         </div>
