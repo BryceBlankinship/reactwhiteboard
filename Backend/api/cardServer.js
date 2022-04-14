@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import positionsRouter from './routes/positions.js';
+import cardsRouter from './routes/cards.js';
 
 const app = express();
 app.use(cors());
@@ -22,6 +22,6 @@ db.on('error', (error) => {
 
 db.once('open', () => console.log('Connected to MongoDB database!'))
 
-app.use('/api/positions', positionsRouter);
+app.use('/api/cards', cardsRouter);
 
 app.listen(8000);

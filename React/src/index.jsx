@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
+import { BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 
-import Button from './Buttons.jsx';
-import WhiteboardView from './Whiteboard';
+import Button from './components/Buttons.jsx';
+import WhiteboardView from './components/Whiteboard.jsx';
+import DocumentationPage from './docs';
+import Auth from './components/Auth.jsx';
 
-export default function HomeView() {
+import { Signup, Signin } from './components/Auth';
+import GuestView from './components/Guest';
+import Whiteboard from './components/Whiteboard.jsx';
+
+export default function App() {
   const [whiteboardActive, setWhiteboardActive] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
 
   const createWhiteboard = () => {
     setWhiteboardActive(true);
@@ -20,28 +28,69 @@ export default function HomeView() {
   if (whiteboardActive) {
     return (
       <>
-        <Button type='text' title="Go back" onClick={removeWhiteboard} />
-        <WhiteboardView />
+        <Button type='small' title="Go back" onClick={removeWhiteboard} />
+        <Whiteboard />
       </>
     );
   } else {
     return(
-      <>
-
-        <h1 id={-1}>React Whiteboard</h1>
-        <p>A React Component visualization tool for hybrid developer/designer teams.</p>
-
-        <Button type='text' title='Create a new whiteboard' fontSize='24px' onClick={createWhiteboard} />
-      </>
+      <HomeView authenticated={authenticated} onClick={createWhiteboard}/>
     );
   }
 
 }
 
+function HomeView(props){
+  if(props.authenticated){
+    return(
+      <>
+        <Greeting />
+      </>
+    );
+  }else{
+    return(
+      <>
+        <div className="header">
+          <h1>React Whiteboard</h1>
+          <p>A React Component Whiteboarding Tool<br></br>for Developer &#38; Designer Teams.</p>
+        </div>
+
+        <Auth greeting={<Greeting/>}/>
+      </>
+    );
+  }
+}
+
+function Greeting(){
+  let greetingText;
+  const date = new Date();
+  let h = date.getHours();
+  
+  if(h > 0 && h <= 12){
+    greetingText = 'Good morning';
+  }else if(h > 12 && h <= 18){
+    greetingText = 'Good afternoon';
+  }else if(h > 18 && h <= 24){
+    greetingText = 'Good evening';
+  }
+
+  return(
+    <div className="greeting-header">
+      {greetingText}
+    </div>
+  );
+}
+
 const root = createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <HomeView />
-  </React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App/>}/>
+        <Route path="/api" element={<DocumentationPage/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/signin" element={<Signin/>}/>
+        <Route path="/guest" element={<GuestView/>}/>
+      </Routes>
+    </BrowserRouter>
 );
 

@@ -1,14 +1,17 @@
+
 .center-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+
 .card-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 
+    background-color: white;
     min-width: 100px;
     padding: 15px;
     border-style: solid;
@@ -59,18 +62,26 @@
 }
 
 .verticaldots {
-    mask-image: url('./assets/icons/three-dots-vertical.svg');
+    mask-image: url('../assets/icons/three-dots-vertical.svg');
     margin-left: 30px;
     margin-right: -5px;
 }
 
 .move {
-    mask-image: url('./assets/icons/arrows-move.svg');
+    mask-image: url('../assets/icons/arrows-move.svg');
     margin-right: 30px;
 }
 
 .gripvertical {
-    mask-image: url('./assets/icons/grip-vertical.svg');
+    mask-image: url('../assets/icons/grip-vertical.svg');
+}
+
+.trash {
+    mask-image: url('../assets/icons/trash-outline.svg');
+}
+
+.add-circle {
+    mask-image: url('../assets/icons/add-circle-outline.svg');
 }
 
 .card-menu {
