@@ -1,8 +1,12 @@
 import React, { Component, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import dotenv from 'dotenv';
+import { GoogleLogin } from 'react-google-login';
 import './auth.css';
 
 import Button from './Buttons';
+
+dotenv.config();
 
 export default class Auth extends Component {
     constructor(props){
@@ -41,8 +45,18 @@ export default class Auth extends Component {
             <div className="auth-outer-container">
                 <div className="auth-container">
                     {this.props.greeting}
+
+                    <label className='auth-divider-label'>Connect with us (experimental)</label>
+                    <hr className='auth-divider'></hr>
+
                     <Button type='small' title='Sign up' fontSize='20px' onClick={this.handleSignup}/>
                     <Button type='small' title='Sign in' fontSize='20px' onClick={this.handleSignin}/>
+
+                    <label className='auth-divider-label'>Use a third party</label>
+                    <hr className='auth-divider'></hr>
+
+                    <GoogleLoginButton/>
+
                     <Button type='text' title='Continue as guest' fontSize='14px' onClick={this.handleGuest}/>
                 </div>
             </div>
@@ -50,7 +64,20 @@ export default class Auth extends Component {
     }
 }
 
-export function GoogleLogin(){
+
+export function UserIcon(){
+    const [active, setActive] = useState(false);
+
+    return(
+        <div className="profile-container">
+
+        </div>
+    );
+}
+
+const clientId = "853462108886-geg5b379q8p728m7drhv9nlaqmvlg38s.apps.googleusercontent.com"
+
+export function GoogleLoginButton(){
     const success = () => {
 
     }
@@ -61,7 +88,7 @@ export function GoogleLogin(){
 
     return(
         <GoogleLogin
-            clientId=""
+            clientId={clientId}
             buttonText="Login"
             onSuccess={success}
             onFailure={failure}

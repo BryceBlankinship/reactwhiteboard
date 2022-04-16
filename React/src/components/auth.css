@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 50vh;
+    height: 60vh;
 }
 
 .auth-container {
@@ -19,4 +19,19 @@
     border-color: gray;
     border-width: 1px;
     gap: 15px;
+}
+
+.profile-container {
+    top: 0;
+    right: 0;
+}
+
+.auth-divider {
+    width: 90%;
+}
+
+.auth-divider-label {
+    text-align: left;
+    width: 90%;
+    height: 1vh;
 }
