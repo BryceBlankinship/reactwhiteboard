@@ -77,13 +77,30 @@ export function UserIcon(){
 
 const clientId = "853462108886-geg5b379q8p728m7drhv9nlaqmvlg38s.apps.googleusercontent.com"
 
-export function GoogleLoginButton(){
-    const success = () => {
+const refreshToken = (res) => {
+    let refreshTiming = (res.tokenObj.expires_in || 3600 - 5 * 60) * 1000;
 
+    const refresh = async () => {
+        const newAuthRes = await res.reloadAuthResponse();
+        refreshTiming = (newAuthRes.expires_in || 3600 - 5 * 60) * 1000;
+
+        console.log('newAuthRes: ' + newAuthRes);
+        console.log('New Auth Token: ' + newAuthRes.id_token);
+
+        setTimeout(refresh, refreshTiming);
+    };
+    setTimeout(refresh, refreshTiming)
+}
+
+export function GoogleLoginButton(){
+    const success = (res) => {
+        console.log('Successful login, user: ' + res.profileObj);
+
+        refreshToken(res);
     }
 
-    const failure = () => {
-
+    const failure = (res) => {
+        console.log('Failed login: ' + res);
     }
 
     return(
@@ -92,6 +109,8 @@ export function GoogleLoginButton(){
             buttonText="Login"
             onSuccess={success}
             onFailure={failure}
+            cookiePolicy={'single_host_origin'}
+            isSignedIn={true}
         />
     );
 }
