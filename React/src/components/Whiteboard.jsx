@@ -21,13 +21,13 @@ export default class Whiteboard extends Component {
         // Check if the array length is 0, if not send POST request with last item in cards[].id
         if(this.state.cards.length === 0){
             try{
-                await createPosition(this.props.whiteboard_id, 1, 50, 50);
+                await createPosition(this.props.whiteboard_id, 1, 0, 50);
             }catch(err){
                 console.log(err);
             }
         }else{
             try{
-                await createPosition(this.props.whiteboard_id, this.state.cards[this.state.cards.length - 1].id + 1, 50, 50);
+                await createPosition(this.props.whiteboard_id, this.state.cards[this.state.cards.length - 1].id + 1, 0, 50);
             }catch(err){
                 console.log(err);
             }
