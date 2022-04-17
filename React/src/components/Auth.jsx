@@ -5,6 +5,7 @@ import { GoogleLogin } from 'react-google-login';
 import './auth.css';
 
 import Button from './Buttons';
+import { googleAuth } from '../../../Backend/api/googleAuth';
 
 dotenv.config();
 
@@ -110,7 +111,6 @@ export function GoogleLoginButton(){
             onSuccess={success}
             onFailure={failure}
             cookiePolicy={'single_host_origin'}
-            isSignedIn={true}
         />
     );
 }
