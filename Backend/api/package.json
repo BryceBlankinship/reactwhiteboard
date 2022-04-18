@@ -9,7 +9,7 @@
     "nodemon": "^2.0.15"
   },
   "scripts": {
-    "start": "nodemon cardServer.js",
+    "start": "nodemon cards/cardServer.js",
     "authorization": "nodemon authorizationServer.js",
     "authentication": "nodemon authenticationServer.js"
   }

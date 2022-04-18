@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import cardsRouter from './routes/cards.js';
+import cardsRouter from './cards.js';
 
 const app = express();
 app.use(cors());
