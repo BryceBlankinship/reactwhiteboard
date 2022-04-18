@@ -5,7 +5,7 @@ import { GoogleLogin } from 'react-google-login';
 import './auth.css';
 
 import Button from './Buttons';
-import { googleAuth } from '../../../Backend/api/googleAuth';
+import { confirmGoogleToken, getGoogleInformationByToken } from '../http-methods';
 
 dotenv.config();
 
@@ -94,9 +94,10 @@ const refreshToken = (res) => {
 }
 
 export function GoogleLoginButton(){
-    const success = (res) => {
+    const success = async (res) => {
         console.log('Successful login, user: ' + res.profileObj);
-
+        console.log(res.tokenId)
+        const googleToken = await getGoogleInformationByToken(res.tokenId);
         refreshToken(res);
     }
 
