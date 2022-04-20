@@ -40,7 +40,6 @@ export default class Whiteboard extends Component {
     }
 
     async componentDidMount(){
-        
         this.setState({ cards : await getWhiteboard(this.props.whiteboard_id) }, () => {
             console.log(this.state.cards);
             this.setState({hasLoaded: true})
@@ -61,5 +60,21 @@ export default class Whiteboard extends Component {
 
             </div>
         ) : null;
+    }
+}
+
+
+export class WhiteboardMenu extends Component {
+    
+    async componentDidMount(){
+        // get configurations from the server (if i even have to)
+    }
+
+    render(){
+        return(
+            <div className="whiteboard-menu-container">
+                
+            </div>
+        );
     }
 }

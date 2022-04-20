@@ -62,21 +62,21 @@ function HomeView(props){
 }
 
 function Greeting(){
-  let greetingText;
-  const date = new Date();
+  const [greeting, setGreeting] = useState('');
+  let date = new Date();
   let h = date.getHours();
   
   if(h > 0 && h <= 12){
-    greetingText = 'Good morning';
+    setGreeting('Good morning');
   }else if(h > 12 && h <= 18){
-    greetingText = 'Good afternoon';
+    setGreeting('Good afternoon');
   }else if(h > 18 && h <= 24){
-    greetingText = 'Good evening';
+    setGreeting('Good evening');
   }
 
   return(
     <div className="greeting-header">
-      {greetingText}
+      {greeting}
     </div>
   );
 }

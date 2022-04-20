@@ -20,7 +20,7 @@ export default class Auth extends Component {
         }
     }
 
-
+    /** In case I add my own auth server
     handleSignup = () => {
         this.setState({ signup: true });
     }
@@ -28,6 +28,7 @@ export default class Auth extends Component {
     handleSignin = () => {
         this.setState({ signin: true });
     }
+    */
 
     handleGuest = () => {
         this.setState({ guest: true });
@@ -47,6 +48,8 @@ export default class Auth extends Component {
                 <div className="auth-container">
                     {this.props.greeting}
 
+                {/* In case I decide to implement my own Auth server down the road
+
                     <label className='auth-divider-label'>Connect with us (experimental)</label>
                     <hr className='auth-divider'></hr>
 
@@ -56,6 +59,7 @@ export default class Auth extends Component {
                     <label className='auth-divider-label'>Use a third party</label>
                     <hr className='auth-divider'></hr>
 
+                */}   
                     <GoogleLoginButton/>
 
                     <Button type='text' title='Continue as guest' fontSize='14px' onClick={this.handleGuest}/>
