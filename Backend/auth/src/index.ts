@@ -29,8 +29,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new Strategy({
-    clientID: GOOGLE_CLIENT_ID,
-    clientSecret: GOOGLE_CLIENT_SECRET,
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "http://www.reactwhiteboard.com/auth/google/callback"
 },
 (accessToken, refreshToken, profile, cb) => {
