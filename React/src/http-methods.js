@@ -1,16 +1,4 @@
-/**
- * Support for querying the Positions API 
- * & Google Auth API
- */
 import axios from 'axios';
-
-export async function getGoogleInformationByToken(token){
-    try{
-        const res = await axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${token}`);
-    }catch(err){
-        console.log(err);
-    }
-}
 
 //will get all positions based on whiteboard id (whiteboard_id is a field in each position set along with id, positionX, positionY that is meant to be shared amongst other position sets)
 export default async function getWhiteboard(whiteboard_id){

@@ -1,11 +1,9 @@
 import React, { Component, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import dotenv from 'dotenv';
-import { GoogleLogin } from 'react-google-login';
 import './auth.css';
 
 import Button from './Buttons';
-import { confirmGoogleToken, getGoogleInformationByToken } from '../http-methods';
 
 dotenv.config();
 
@@ -47,7 +45,7 @@ export default class Auth extends Component {
             <div className="auth-outer-container">
                 <div className="auth-container">
                     {this.props.greeting}
-
+                
                 {/* In case I decide to implement my own Auth server down the road
 
                     <label className='auth-divider-label'>Connect with us (experimental)</label>
@@ -60,7 +58,6 @@ export default class Auth extends Component {
                     <hr className='auth-divider'></hr>
 
                 */}   
-                    <GoogleLoginButton/>
 
                     <Button type='text' title='Continue as guest' fontSize='14px' onClick={this.handleGuest}/>
                 </div>
@@ -81,44 +78,6 @@ export function UserIcon(){
 }
 
 const clientId = "853462108886-geg5b379q8p728m7drhv9nlaqmvlg38s.apps.googleusercontent.com"
-
-const refreshToken = (res) => {
-    let refreshTiming = (res.tokenObj.expires_in || 3600 - 5 * 60) * 1000;
-
-    const refresh = async () => {
-        const newAuthRes = await res.reloadAuthResponse();
-        refreshTiming = (newAuthRes.expires_in || 3600 - 5 * 60) * 1000;
-
-        console.log('newAuthRes: ' + newAuthRes);
-        console.log('New Auth Token: ' + newAuthRes.id_token);
-
-        setTimeout(refresh, refreshTiming);
-    };
-    setTimeout(refresh, refreshTiming)
-}
-
-export function GoogleLoginButton(){
-    const success = async (res) => {
-        console.log('Successful login, user: ' + res.profileObj);
-        console.log(res.tokenId)
-        const googleToken = await getGoogleInformationByToken(res.tokenId);
-        refreshToken(res);
-    }
-
-    const failure = (res) => {
-        console.log('Failed login: ' + res);
-    }
-
-    return(
-        <GoogleLogin
-            clientId={clientId}
-            buttonText="Login"
-            onSuccess={success}
-            onFailure={failure}
-            cookiePolicy={'single_host_origin'}
-        />
-    );
-}
 
 export function Signup(){
     const [signUp, setSignUp] = useState(true);
