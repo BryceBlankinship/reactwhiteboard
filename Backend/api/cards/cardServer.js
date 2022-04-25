@@ -24,4 +24,4 @@ db.once('open', () => console.log('Connected to MongoDB database!'))
 
 app.use('/api/cards', cardsRouter);
 
-app.listen(8000);
+app.listen(process.env.PORT || 8000);
