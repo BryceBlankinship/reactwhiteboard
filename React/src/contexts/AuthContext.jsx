@@ -6,7 +6,7 @@ export default function AuthContext(props){
     const [userObject, setUserObject] = useState();
 
     useEffect(() => {
-        axios.get("http://localhost:4000/user", { withCredentials: true }).then(res => {
+        axios.get("https://reactwhiteboard.herokuapp.com/user", { withCredentials: true }).then(res => {
             setUserObject(res.data);
         });
     }, []);

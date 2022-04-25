@@ -1,3 +1,12 @@
+# Deploying Backend to Heroku
+
+## Deploy the authentication service: 
+git subtree push --prefix Backend/auth heroku master
+
+## Deploy the cards api: 
+git subtree push --prefix Backend/api heroku master
+
+
 # Recent Decisions
 
 (4/5/22):

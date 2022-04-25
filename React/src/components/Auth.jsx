@@ -30,11 +30,11 @@ export default class Auth extends Component {
     */
 
     handleGoogle = () => {
-        window.open("http://localhost:4000/auth/google", "_self");
+        window.open("https://reactwhiteboard.herokuapp.com/auth/google", "_self");
     }
 
     handleGithub = () => {
-        window.open("http://localhost:4000/auth/github", "_self");
+        window.open("hhttps://reactwhiteboard.herokuapp.com/auth/github", "_self");
     }
 
     handleGuest = () => {
@@ -42,7 +42,7 @@ export default class Auth extends Component {
     }
 
     handleLogout = () => {
-        axios.get("http://localhost:4000/auth/logout", { withCredentials: true }).then(res => {
+        axios.get("https://reactwhiteboard.herokuapp.com/auth/logout", { withCredentials: true }).then(res => {
             if(res.data){
                 window.location.href = "/";
             }

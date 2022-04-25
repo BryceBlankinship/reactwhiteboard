@@ -18,6 +18,8 @@ mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTop
     console.log("Successfully connected to MongoDB database");
 });
 
+app.set("trust proxy", 1);
+
 //Express middleware
 app.use(express.json());
 // dev url: http://localhost:3000
@@ -27,6 +29,11 @@ app.use(
         secret: "secretcode",
         resave: true,
         saveUninitialized: true,
+        cookie: {
+            sameSite: 'none',
+            secure: true,
+            maxAge: 1000 * 60 * 60 * 24 * 7 // one week
+        }
     })
 );
 app.use(passport.initialize());
