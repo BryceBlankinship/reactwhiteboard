@@ -1,8 +1,12 @@
 import React, { Component, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import dotenv from 'dotenv';
 import './auth.css';
 
 import Button from './Buttons';
+import axios from 'axios';
+
+dotenv.config();
 
 export default class Auth extends Component {
     constructor(props){
@@ -15,7 +19,7 @@ export default class Auth extends Component {
         }
     }
 
-
+    /** In case I add my own auth server
     handleSignup = () => {
         this.setState({ signup: true });
     }
@@ -23,9 +27,26 @@ export default class Auth extends Component {
     handleSignin = () => {
         this.setState({ signin: true });
     }
+    */
+
+    handleGoogle = () => {
+        window.open("http://localhost:4000/auth/google", "_self");
+    }
+
+    handleGithub = () => {
+        window.open("http://localhost:4000/auth/github", "_self");
+    }
 
     handleGuest = () => {
         this.setState({ guest: true });
+    }
+
+    handleLogout = () => {
+        axios.get("http://localhost:4000/auth/logout", { withCredentials: true }).then(res => {
+            if(res.data){
+                window.location.href = "/";
+            }
+        });
     }
 
     render(){
@@ -41,31 +62,40 @@ export default class Auth extends Component {
             <div className="auth-outer-container">
                 <div className="auth-container">
                     {this.props.greeting}
+                
+                {/* In case I decide to implement my own Auth server down the road
+
+                    <label className='auth-divider-label'>Connect with us (experimental)</label>
+                    <hr className='auth-divider'></hr>
+
                     <Button type='small' title='Sign up' fontSize='20px' onClick={this.handleSignup}/>
                     <Button type='small' title='Sign in' fontSize='20px' onClick={this.handleSignin}/>
+
+                    <label className='auth-divider-label'>Use a third party</label>
+                    <hr className='auth-divider'></hr>
+
+                */}   
+
+                    <Button type='small' title='Sign in with Github' fontSize='16px' onClick={this.handleGithub}/>
+                    <p>(Github highly recommended)</p>
+                    <Button type='small' title='Sign in with Google' fontSize='16px' onClick={this.handleGoogle}/>
                     <Button type='text' title='Continue as guest' fontSize='14px' onClick={this.handleGuest}/>
+
+                    <Button type='small' title='Logout' fontSize='16px' onClick={this.handleLogout}/>
                 </div>
             </div>
         );
     }
 }
 
-export function GoogleLogin(){
-    const success = () => {
 
-    }
-
-    const failure = () => {
-
-    }
+export function UserIcon(){
+    const [active, setActive] = useState(false);
 
     return(
-        <GoogleLogin
-            clientId=""
-            buttonText="Login"
-            onSuccess={success}
-            onFailure={failure}
-        />
+        <div className="profile-container">
+
+        </div>
     );
 }
 

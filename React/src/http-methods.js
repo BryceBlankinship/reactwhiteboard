@@ -1,6 +1,3 @@
-/**
- * Support for querying the Positions API
- */
 import axios from 'axios';
 
 //will get all positions based on whiteboard id (whiteboard_id is a field in each position set along with id, positionX, positionY that is meant to be shared amongst other position sets)

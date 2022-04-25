@@ -4,13 +4,13 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import cardsRouter from './routes/cards.js';
+import cardsRouter from './cards.js';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-//const client = redis.createClient({ url: process.env.REDIS_CLIENT_URL });
+// const client = redis.createClient({ url: process.env.REDIS_CLIENT_URL });
 // redis password: process.env.REDIS_CLIENT_PASSWORD
 // admin password: process.env.REDIS_ADMIN_PASSWORD
 
@@ -24,4 +24,4 @@ db.once('open', () => console.log('Connected to MongoDB database!'))
 
 app.use('/api/cards', cardsRouter);
 
-app.listen(8000);
+app.listen(process.env.PORT || 8000);
