@@ -34,7 +34,7 @@ export default class Auth extends Component {
     }
 
     handleGithub = () => {
-        window.open("hhttps://reactwhiteboard.herokuapp.com/auth/github", "_self");
+        window.open("https://reactwhiteboard.herokuapp.com/auth/github", "_self");
     }
 
     handleGuest = () => {

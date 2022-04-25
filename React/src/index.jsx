@@ -47,8 +47,8 @@ function HomeView() {
   const user = useContext(authContext);
 
   const handleLogout = () => {
-    axios.get("http://localhost:4000/auth/logout", { withCredentials: true }).then(res => {
-      if (res.status === 200) {
+    axios.get("https://reactwhiteboard.herokuapp.com/auth/logout", { withCredentials: true }).then(res => {
+      if (res.data) {
         window.location.href = "/";
       }
     });
