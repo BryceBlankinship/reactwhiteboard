@@ -3,7 +3,7 @@ import axios from 'axios';
 //will get all positions based on whiteboard id (whiteboard_id is a field in each position set along with id, positionX, positionY that is meant to be shared amongst other position sets)
 export default async function getWhiteboard(whiteboard_id){
     try{
-        const res = await axios.get(`http://localhost:8000/api/cards/${whiteboard_id}`);
+        const res = await axios.get(`https://reactwhiteboard-api-cards.herokuapp.com/api/cards/${whiteboard_id}`);
         return res.data;
       }catch(err){
           console.log(err);
@@ -14,7 +14,7 @@ export default async function getWhiteboard(whiteboard_id){
 
 export async function getPosition(whiteboard_id, id){
     try{
-        const res = await axios.get(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`);
+        const res = await axios.get(`https://reactwhiteboard-api-cards.herokuapp.com/api/cards/${whiteboard_id}/${id}`);
         return {
             x: res.data.positionX, 
             y: res.data.positionY
@@ -26,7 +26,7 @@ export async function getPosition(whiteboard_id, id){
 
 export async function createPosition(whiteboard_id, id, x, y){
     try{
-        const res = await axios.post(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`, { positionX: x, positionY: y });
+        const res = await axios.post(`https://reactwhiteboard-api-cards.herokuapp.com/api/cards/${whiteboard_id}/${id}`, { positionX: x, positionY: y });
         return res.data;
     }catch(err){
         console.log(err);
@@ -35,7 +35,7 @@ export async function createPosition(whiteboard_id, id, x, y){
 
 export async function updatePosition(whiteboard_id, id, x, y){
     try{
-        const res = await axios.patch(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`, { positionX: x, positionY: y });
+        const res = await axios.patch(`https://reactwhiteboard-api-cards.herokuapp.com/api/cards/${whiteboard_id}/${id}`, { positionX: x, positionY: y });
         return res.data;
     }catch(err){
         console.log(err);
@@ -44,7 +44,7 @@ export async function updatePosition(whiteboard_id, id, x, y){
 
 export async function deletePosition(whiteboard_id, id){
     try{
-        const res = await axios.delete(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`);
+        const res = await axios.delete(`https://reactwhiteboard-api-cards.herokuapp.com/api/cards/${whiteboard_id}/${id}`);
         return res.data;
     }catch(err){
         console.log(err);
@@ -55,7 +55,7 @@ export async function deletePosition(whiteboard_id, id){
 
 export async function getTitle(whiteboard_id, id){
     try{
-        const res = await axios.get(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`);
+        const res = await axios.get(`https://reactwhiteboard-api-cards.herokuapp.com/api/cards/${whiteboard_id}/${id}`);
         return res.data.title;
     }catch(err){
         console.log(err);
@@ -64,7 +64,7 @@ export async function getTitle(whiteboard_id, id){
 
 export async function createTitle(whiteboard_id, id, title){
     try{
-        const res = await axios.post(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`, { title: title });
+        const res = await axios.post(`https://reactwhiteboard-api-cards.herokuapp.com/api/cards/${whiteboard_id}/${id}`, { title: title });
         return res.data.desc;
     }catch(err){
         console.log(err);
@@ -73,7 +73,7 @@ export async function createTitle(whiteboard_id, id, title){
 
 export async function updateTitle(whiteboard_id, id, title){
     try{
-        const res = await axios.patch(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`, { title: title });
+        const res = await axios.patch(`https://reactwhiteboard-api-cards.herokuapp.com/api/cards/${whiteboard_id}/${id}`, { title: title });
         return res.data;
     }catch(err){
         console.log(err);
@@ -82,7 +82,7 @@ export async function updateTitle(whiteboard_id, id, title){
 
 export async function createDesc(whiteboard_id, id, desc){
     try{
-        const res = await axios.post(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`, { desc: desc });
+        const res = await axios.post(`https://reactwhiteboard-api-cards.herokuapp.com/api/cards/${whiteboard_id}/${id}`, { desc: desc });
         return res.data;
     }catch(err){
         console.log(err);
@@ -91,7 +91,7 @@ export async function createDesc(whiteboard_id, id, desc){
 
 export async function getDesc(whiteboard_id, id){
     try{
-        const res = await axios.get(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`);
+        const res = await axios.get(`https://reactwhiteboard-api-cards.herokuapp.com/api/cards/${whiteboard_id}/${id}`);
         return res.data.desc;
     }catch(err){
         console.log(err);
@@ -100,7 +100,7 @@ export async function getDesc(whiteboard_id, id){
 
 export async function updateDesc(whiteboard_id, id, desc){
     try{
-        const res = await axios.patch(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`, { desc: desc });
+        const res = await axios.patch(`https://reactwhiteboard-api-cards.herokuapp.com/api/cards/${whiteboard_id}/${id}`, { desc: desc });
         return res.data;
     }catch(err){
         console.log(err);

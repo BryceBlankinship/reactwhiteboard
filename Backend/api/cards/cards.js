@@ -5,7 +5,8 @@ export default router;
 import Card from './cardSchema.js';
 
 router.get('/', (req, res) => {
-    res.send("Welcome to the ReactWhiteboard Cards API. Refer to the documentation here: https://www.reactwhiteboard.com/api/");
+    // previously res.json({ message: "Welcome to the..." })
+    res.send("Welcome to the ReactWhiteboard Cards API. Refer to the documentation <a href='https://www.reactwhiteboard.com/api/'>here</a>");
 });
 
 //Get all cards within a Whiteboard
