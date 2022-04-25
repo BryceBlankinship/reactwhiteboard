@@ -28,5 +28,8 @@
     "heroku-prebuild": "yarn install",
     "build": "tsc -p .",
     "dev": "nodemon --exec ts-node src/index.ts"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
