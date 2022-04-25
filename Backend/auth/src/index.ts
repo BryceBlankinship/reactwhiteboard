@@ -132,7 +132,7 @@ app.get('/auth/logout', (req, res) => {
 });
 
 app.get("/", (req, res) => {
-    res.send("Hello Typescript World!");
+    res.send("Hey There. If you're reading this, you're in the wrong place. Click <a href='https://www.reactwhiteboard.com/'>here</a> to head back.");
 });
 
 app.get("/user", (req, res) => {
