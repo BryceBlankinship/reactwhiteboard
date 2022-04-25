@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import './auth.css';
 
 import Button from './Buttons';
+import axios from 'axios';
 
 dotenv.config();
 
@@ -28,8 +29,24 @@ export default class Auth extends Component {
     }
     */
 
+    handleGoogle = () => {
+        window.open("http://localhost:4000/auth/google", "_self");
+    }
+
+    handleGithub = () => {
+        window.open("http://localhost:4000/auth/github", "_self");
+    }
+
     handleGuest = () => {
         this.setState({ guest: true });
+    }
+
+    handleLogout = () => {
+        axios.get("http://localhost:4000/auth/logout", { withCredentials: true }).then(res => {
+            if(res.data){
+                window.location.href = "/";
+            }
+        });
     }
 
     render(){
@@ -59,7 +76,12 @@ export default class Auth extends Component {
 
                 */}   
 
+                    <Button type='small' title='Sign in with Github' fontSize='16px' onClick={this.handleGithub}/>
+                    <p>(Github highly recommended)</p>
+                    <Button type='small' title='Sign in with Google' fontSize='16px' onClick={this.handleGoogle}/>
                     <Button type='text' title='Continue as guest' fontSize='14px' onClick={this.handleGuest}/>
+
+                    <Button type='small' title='Logout' fontSize='16px' onClick={this.handleLogout}/>
                 </div>
             </div>
         );
