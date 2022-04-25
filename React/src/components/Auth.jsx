@@ -99,8 +99,6 @@ export function UserIcon(){
     );
 }
 
-const clientId = "853462108886-geg5b379q8p728m7drhv9nlaqmvlg38s.apps.googleusercontent.com"
-
 export function Signup(){
     const [signUp, setSignUp] = useState(true);
     
