@@ -4,7 +4,7 @@ export default router;
 
 import Card from './cardSchema.js';
 
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
     res.send("Welcome to the ReactWhiteboard Cards API. Refer to the documentation here: https://www.reactwhiteboard.com/api/");
 });
 
