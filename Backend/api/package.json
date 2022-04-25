@@ -12,7 +12,8 @@
     "mongoose": "^6.2.10"
   },
   "scripts": {
-    "start": "nodemon cards/cardServer.js",
+    "dev": "nodemon cards/cardServer.js",
+    "start": "node cards/cardServer.js",
     "authorization": "nodemon authorizationServer.js",
     "authentication": "nodemon authenticationServer.js"
   }
