@@ -12,7 +12,7 @@ export default class Spinner extends Component{
     render(){
         return(
             <div className="spinner-container">
-                <div className="spinner"></div>
+                <div className="icon-1 spinner"></div>
             </div>
         );
     }
