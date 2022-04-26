@@ -2,9 +2,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+
+.loading {
+    padding: 15px;
+    mask-repeat: no-repeat;
+    mask-size: cover;
+    background-color: black;
+
+    animation-name: spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; 
 }
 
 .spinner {
     mask-image: url('../assets/icons/logo-react.svg');
-    padding: 15px;
+    padding: 30px;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
 }
