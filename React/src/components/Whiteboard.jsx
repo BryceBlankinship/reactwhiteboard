@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import getWhiteboard, { createPosition } from '../http-methods.js';
 import Button from './Buttons.jsx';
-import Card from './Cards.jsx';
+import Spinner from './Spinner.jsx';
 import './whiteboard.css';
+
+import Card from "./Cards.jsx";
 
 export default class Whiteboard extends Component {
     constructor(props){
@@ -48,18 +50,18 @@ export default class Whiteboard extends Component {
 
     render(){
         return this.state.hasLoaded ? (
-            <div className="whiteboard-container">
-                <p>Welcome to your Whiteboard!</p>
-                <p>Begin by <Button type='text' title='creating a component' fontSize='15px' onClick={this.createCard}></Button></p>        
-                
-                {
-                    this.state.cards.map((card) => (
-                        <Card key={'CARD-' + card.id} whiteboard_id={this.props.whiteboard_id} id={card.id}/>
-                    ))
-                }
+                <div className="whiteboard-container">
+                    <p>Welcome to your Whiteboard!</p>
+                    <p>Begin by <Button type='text' title='creating a component' fontSize='15px' onClick={this.createCard}></Button></p>        
+                    
+                        {
+                            this.state.cards.map((card) => (
+                                <Card key={'CARD-' + card.id} whiteboard_id={this.props.whiteboard_id} id={card.id}/>
+                            ))
+                        }
 
-            </div>
-        ) : null;
+                </div>
+        ) : <Spinner/>;
     }
 }
 
