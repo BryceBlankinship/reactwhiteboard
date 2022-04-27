@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from './Buttons';
-import Profile from './Auth';
+import { Profile } from './Auth';
 
 export default class Navbar extends Component {
 

@@ -20,6 +20,27 @@
     border-radius: 4px;
 }
 
+.logo {
+    mask-image: url('../assets/icons/logo-react.svg');
+    background-color: #61DBFB;
+    padding: 30px;
+}
+
+.logo:focus{
+    background-color: #61DBFB;
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+    transition: transform 1.5s;
+}
+
+.logo:active {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    transition: 0s;
+  }
+
 .small:hover {
     background-color: black;
     cursor: pointer;
