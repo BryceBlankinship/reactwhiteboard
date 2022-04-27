@@ -23,7 +23,7 @@ app.set("trust proxy", 1);
 //Express middleware
 app.use(express.json());
 // dev url: http://localhost:3000
-app.use(cors({ origin: "https://www.reactwhiteboard.com", credentials: true }));
+app.use(cors({ origin: ["https://www.reactwhiteboard.com", "http://localhost:3000"], credentials: true }));
 app.use(
     session({
         secret: "secretcode",

@@ -1,10 +1,11 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import dotenv from 'dotenv';
 import './auth.css';
 
 import Button from './Buttons';
 import axios from 'axios';
+import { authContext } from '../contexts/AuthContext';
 
 dotenv.config();
 
@@ -145,4 +146,9 @@ export function Signin(){
             </div>
         </div>
     ) : <Navigate to="/"/>;
+}
+
+export function Profile(){
+    const user = useContext(authContext);
+    console.log(user);
 }

@@ -24,3 +24,17 @@
     background-color: black;
     cursor: pointer;
 }
+
+button {
+    background-color: gray;
+    outline: none;
+}
+
+button:active {
+    border-style: outset;
+}
+
+button:focus {
+    background-color: black;
+    outline: none;
+}
