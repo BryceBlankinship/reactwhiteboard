@@ -89,17 +89,6 @@ export default class Auth extends Component {
     }
 }
 
-
-export function UserIcon(){
-    const [active, setActive] = useState(false);
-
-    return(
-        <div className="profile-container">
-
-        </div>
-    );
-}
-
 export function Signup(){
     const [signUp, setSignUp] = useState(true);
     
@@ -151,4 +140,9 @@ export function Signin(){
 export function Profile(){
     const user = useContext(authContext);
     console.log(user);
+    return(
+        <>
+            profile
+        </>
+    );
 }
