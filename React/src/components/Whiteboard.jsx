@@ -1,4 +1,4 @@
-import React, { Component, lazy, Suspense } from 'react';
+import React, { Component } from 'react';
 import getWhiteboard, { createPosition } from '../http-methods.js';
 import Button from './Buttons.jsx';
 import Spinner from './Spinner.jsx';

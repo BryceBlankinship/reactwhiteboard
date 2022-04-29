@@ -81,8 +81,6 @@ export default class Auth extends Component {
                     <p>(Github highly recommended)</p>
                     <Button type='small' title='Sign in with Google' fontSize='16px' onClick={this.handleGoogle}/>
                     <Button type='text' title='Continue as guest' fontSize='14px' onClick={this.handleGuest}/>
-
-                    <Button type='small' title='Logout' fontSize='16px' onClick={this.handleLogout}/>
                 </div>
             </div>
         );
