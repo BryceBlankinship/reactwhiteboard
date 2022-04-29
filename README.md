@@ -1,9 +1,11 @@
 # Deploying Backend to Heroku
 
 ## Deploy the authentication service: 
+heroku git:remote -a reactwhiteboard
 git subtree push --prefix Backend/auth heroku [branch]:master
 
 ## Deploy the cards api: 
+heroku git:remote -a reactwhiteboard-api-cards
 git subtree push --prefix Backend/api heroku [branch]:master
 
 

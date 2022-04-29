@@ -12,6 +12,10 @@ const user = new mongoose.Schema({
     username: {
         required: true,
         type: String,
+    },
+    whiteboards: {
+        required: false,
+        type: Array,
     }
 }, { collection: 'usersCollection' });
 

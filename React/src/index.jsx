@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
+import logo from './assets/logoNoText.png';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 import Button from './components/Buttons.jsx';
@@ -69,7 +70,8 @@ function HomeView() {
     return (
       <>
         <div className="header">
-          <h1>React Whiteboard</h1>
+        <h1>React Whiteboard</h1>
+        <img src={logo} width={247} height={181.5}></img>
           <p>A React Component Whiteboarding Tool<br></br>for Developer &#38; Designer Teams.</p>
         </div>
 

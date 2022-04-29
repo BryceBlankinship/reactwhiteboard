@@ -1,0 +1,15 @@
+.navbar-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-item {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.left {
+    float: left;
+}
