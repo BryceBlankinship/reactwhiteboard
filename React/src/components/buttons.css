@@ -21,9 +21,10 @@
 }
 
 .logo {
+    cursor: pointer;
     mask-image: url('../assets/icons/logo-react.svg');
-    background-color: #61DBFB;
     padding: 30px;
+    background-color: #61DBFB;
 }
 
 .logo:focus{
@@ -39,7 +40,7 @@
     -ms-transform: rotate(0deg);
     transform: rotate(0deg);
     transition: 0s;
-  }
+}
 
 .small:hover {
     background-color: black;
