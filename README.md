@@ -1,15 +1,11 @@
-# Deploying Backend to Heroku
-
-## Deploy the authentication service: 
-heroku git:remote -a reactwhiteboard
-git subtree push --prefix Backend/auth heroku [branch]:master
-
-## Deploy the cards api: 
-heroku git:remote -a reactwhiteboard-api-cards
-git subtree push --prefix Backend/api heroku [branch]:master
 
 
-# Recent Decisions
+# What's Happening 🧠
+
+(9/8/22):
+I cannot believe its been since April that I've worked on this. Well, I'm back... and adding websockets. And that's not it, i'm converting the backend from NodeJS to Java Spring so that I understand it better for work. Spring should actually prove to be better suited anyway, since I want the reliability and security it promises. Let's hope it backs up those claims. Also going to implementing OAuth2 using the Spring backend, but not just yet.
+
+Also need to deploy this backend somewhere other than heroku, as it is too expensive. Looking into a couple options, but will likely learn Docker in the process. Thinking of fly.io or GCP for the cloud providers. Also going to be using Cassandra for the DB, so need to figure out where to host that as well. I'm a noob with the infra stuff so I should learn a lot here.
 
 (4/5/22):
 Fixed all dependency errors by using yarn instead of npm, and rebuilt the dependency tree. This change was recommended by React which someone on the React team probably encountered this issue and added a debug log for it.
