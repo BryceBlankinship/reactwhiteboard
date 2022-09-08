@@ -16,5 +16,11 @@
     text-align: center;
     justify-content: center;
     gap: 5px;
-    height: 35vh;
+    height: 40vh;
+}
+
+.version-footer {
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
 }

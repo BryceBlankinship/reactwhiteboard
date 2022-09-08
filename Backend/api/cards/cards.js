@@ -30,7 +30,6 @@ router.post('/:whiteboard_id/:id', async (req, res) => {
         }else{
             const card = new Card({
                 whiteboard_id: req.params.whiteboard_id,
-                whiteboard_name: req.body.whiteboard_name,
                 id: req.params.id,
                 positionX: req.body.positionX,
                 positionY: req.body.positionY,

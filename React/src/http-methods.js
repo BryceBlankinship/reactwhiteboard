@@ -16,7 +16,7 @@ export async function getPosition(whiteboard_id, id){
     try{
         const res = await axios.get(`https://reactwhiteboard-api-cards.herokuapp.com/api/cards/${whiteboard_id}/${id}`);
         return {
-            x: res.data.positionX, 
+            x: res.data.positionX,
             y: res.data.positionY
         }
     }catch(err){
@@ -104,5 +104,23 @@ export async function updateDesc(whiteboard_id, id, desc){
         return res.data;
     }catch(err){
         console.log(err);
+    }
+}
+
+export async function getChildren(whiteboard_id, id){
+    try{
+        const res = await axios.get(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`);
+        return res.data.children;
+    }catch(err){
+        console.error(err);
+    }
+}
+
+export async function addChild(whiteboard_id, id, children){
+    try{
+        const res = await axios.patch(`http://localhost:8000/api/cards/${whiteboard_id}/${id}`, { children: children });
+        return res.data;
+    }catch(err){
+        console.error(err);
     }
 }
